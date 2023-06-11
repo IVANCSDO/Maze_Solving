@@ -1,0 +1,64 @@
+#lienzo{
+    width: 1000px;
+    height: 1000px;
+}
+
+.cuadradoBlanco{
+    border: solid black 1px;
+    float: left;
+    width: 97px;
+    height: 97px;
+}
+
+.cuadradoNegro{
+    border: solid black 1px;
+
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: black;
+}
+
+.meta{
+    border: solid black 1px;
+
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: rgb(0, 240, 12);
+}
+
+.actual{
+    border: solid black 1px;
+
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: rgb(255, 0, 191);
+}
+
+.anterior{
+    border: solid black 1px;
+
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: rgb(158, 86, 140);
+}
+
+.actual2{
+    border: solid black 1px;
+
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: rgb(255, 0, 191);
+}
+
+.anterior2{
+    border: solid black 1px;
+    float: left;
+    width: 97px;
+    height: 97px;
+    background-color: rgb(94, 41, 80);
+}
