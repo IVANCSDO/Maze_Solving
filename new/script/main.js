@@ -18,7 +18,8 @@ function laberintoDefaul() {
                         status: "blank",
                         id: cell,
                         prio: null,
-                        color: 1
+                        color: 1,
+                        type: "road"
                     }
                 };
             }else{
@@ -27,7 +28,8 @@ function laberintoDefaul() {
                         status: "blank",
                         id: cell,
                         prio: null,
-                        color: 2
+                        color: 2,
+                        type: "road"
                     }
                 };
             }
@@ -48,11 +50,11 @@ function createCell (cell) {
 
     if(bandColor == true){
         lienz.innerHTML += `
-        <div class="cell clear" id="cuadrado-${cell}"></div>
+        <div class="cell clear" id="${cell}"></div>
         `;
     }else{
         lienz.innerHTML += `
-        <div class="cell dark" id="cuadrado-${cell}"></div>
+        <div class="cell dark" id="${cell}"></div>
         `;
     }
 }
@@ -90,8 +92,11 @@ function changeClass() {
             this.classList.remove("meta");
             this.classList.remove("actual");
             this.classList.remove("wall");
-
+            // add classlist
             this.classList.add("wall");
+
+            // updateData
+            updateData("wall", this.id)
         break;
     
         case 2:
@@ -99,6 +104,8 @@ function changeClass() {
             this.classList.remove("meta");
             this.classList.remove("actual");
             this.classList.remove("wall");
+
+            updateData("road", this.id)
         break;
 
         case 3:
@@ -106,9 +113,11 @@ function changeClass() {
             this.classList.remove("meta");
             this.classList.remove("actual");
             this.classList.remove("wall");
-
+            // add classlist
             this.classList.add("actual");
 
+            // updateData
+            updateData("actual", this.id)
         break;
 
         case 4:
@@ -116,13 +125,36 @@ function changeClass() {
             this.classList.remove("meta");
             this.classList.remove("actual");
             this.classList.remove("wall");
-
+            // add classlist
             this.classList.add("meta");
 
+            // updateData
+            updateData("meta", this.id)
         break;
 
         default:
         break;
     }
+
+}
+
+function updateData(value, id) {
+    for(i=0; i!=map.length; i++){
+        if(map[i].cell.id == id){
+            map[i].cell.type = value
+        }
+    }
+}
+
+
+function empezar() { 
+
+    calcularA()
+    
+}
+
+function calcularA(){
+
+
 
 }
