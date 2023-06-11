@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo</title>
+
+    <script src="script/main.js"></script>
+    <link rel="stylesheet" href="CSS/estilo.css">
+
+</head>
+<body>
+    <div id="lienzo"></div> 
+    <br>
+    <div id="botones">
+        <input type="button" value="empezar" onclick="empezar()">
+        <input type="button" value="crear" onclick="generarMapa()">
+        <input type="number" id="cuantos" value="10">
+
+        <input type="button" id="botonMeta" value="seleccionar meta" onclick="meta()">
+        <input type="button" id="botonInicio" value="seleccionar inicio" onclick="inicio()">
+        <input type="button" id="botonPared" value="crear pared" onclick="pared()">
+        <input type="button" id="botonPared2" value="borrar pared" onclick="paredBorrar()">
+        <input type="button" id="botonLaberinto" value="Laberinto predeterminado" onclick="laberintoDefaul()"> <br><br>
+        <input type="button" id="reset" value="reset" onclick="reset()">
+    </div>
+</body>
+</html>
