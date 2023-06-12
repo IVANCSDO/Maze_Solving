@@ -30,7 +30,6 @@ async function setCells(){
 
             case "actual":
                 actualCell=map[i].cell.id;
-                arrCuadrosAct.push(actualCell);
             break;
 
             case "meta":
