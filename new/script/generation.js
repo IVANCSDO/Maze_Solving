@@ -7,6 +7,8 @@ var bandColor = true;
 
 var clickModeV = null;
 
+var visualizarPeso=true;
+
 function laberintoDefaul() { 
     // create cells in the format of: "x-y
     for(i=0; i!=sizeY-1; i++){
@@ -113,6 +115,7 @@ function changeClass() {
         break;
 
         case 3:
+            removestart();
             // remove all classlist
             this.classList.remove("meta");
             this.classList.remove("actual");
@@ -125,6 +128,7 @@ function changeClass() {
         break;
 
         case 4:
+            removeGoal();
             // remove all classlist
             this.classList.remove("meta");
             this.classList.remove("actual");
@@ -142,10 +146,42 @@ function changeClass() {
 
 }
 
+function removeGoal() {
+
+    for(i=0; i!=map.length; i++){
+        if(map[i].cell.type == "meta"){
+            map[i].cell.type = "road";
+            document.getElementById(map[i].cell.id).classList.remove("meta");
+        };
+    };
+}
+
+function removestart() {
+
+    for(i=0; i!=map.length; i++){
+        if(map[i].cell.type == "actual"){
+            map[i].cell.type = "road";
+            document.getElementById(map[i].cell.id).classList.remove("actual");
+        };
+    };
+}
+
 function updateData(value, id) {
     for(i=0; i!=map.length; i++){
         if(map[i].cell.id == id){
             map[i].cell.type = value;
         };
     };
+}
+
+function verPeso(){
+
+    if(visualizarPeso){
+        visualizarPeso=false;
+        document.getElementById("botonPeso").style.backgroundColor="red"
+    }else{
+        visualizarPeso=true;
+        document.getElementById("botonPeso").style.backgroundColor="green"
+    }
+
 }

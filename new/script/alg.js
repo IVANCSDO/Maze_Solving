@@ -12,6 +12,10 @@ var contadorDeCercania = 0;
 
 function empezar() {
     clickModeV = null;
+    preferenceCalc();
+}
+
+function preferenceCalc(){
     setCells();
     setPrefence();
 }
@@ -56,7 +60,9 @@ async function setPrefence(){
 
     arrCuadrosAct2 = [];
 
-    document.getElementById(meta).innerHTML = "x";
+    if(visualizarPeso){
+        document.getElementById(meta).innerHTML = "x";
+    }
 
     intervalCalc = setInterval(() => {
         calcPref()
@@ -79,7 +85,14 @@ function calcPref() {
 
         // top
         var top = (yAct - 1) + "-" + xAct;
-        if(arrRoads.includes(top) && document.getElementById(top).innerHTML==""){
+        var objTop;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == top){
+                objTop=map[z]
+            }
+        }
+
+        if(arrRoads.includes(top) && objTop.cell.prio==null){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -90,11 +103,13 @@ function calcPref() {
                     }
                 }
 
-                if(document.getElementById(top)){
-                    if(document.getElementById(top).innerHTML==""){
-                        document.getElementById(top).innerHTML = contadorDeCercania;
-                    }
-                } 
+                if(visualizarPeso){
+                    if(document.getElementById(top)){
+                        if(document.getElementById(top).innerHTML==""){
+                            document.getElementById(top).innerHTML = contadorDeCercania;
+                        }
+                    } 
+                }
                 arrCuadrosAct2.push(top)
             }
         }
@@ -102,7 +117,14 @@ function calcPref() {
 
         // bot
         var bot = (yAct + 1) + "-" + xAct;
-        if(arrRoads.includes(bot) && document.getElementById(bot).innerHTML==""){
+        var objBot;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == bot){
+                objBot=map[z]
+            }
+        }
+
+        if(arrRoads.includes(bot) && objBot.cell.prio==null){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -113,18 +135,27 @@ function calcPref() {
                     }
                 }
 
-                if(document.getElementById(bot)){
-                    if(document.getElementById(bot).innerHTML==""){
-                        document.getElementById(bot).innerHTML = contadorDeCercania;
-                    }
-                } 
+                if(visualizarPeso){
+                    if(document.getElementById(bot)){
+                        if(document.getElementById(bot).innerHTML==""){
+                            document.getElementById(bot).innerHTML = contadorDeCercania;
+                        }
+                    } 
+                }
                 arrCuadrosAct2.push(bot)
             }
         }
 
         // left
         var left = yAct + "-" + (xAct - 1);
-        if(arrRoads.includes(left) && document.getElementById(left).innerHTML==""){
+        var ojbLeft;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == left){
+                ojbLeft=map[z]
+            }
+        }
+
+        if(arrRoads.includes(left) && ojbLeft.cell.prio==null){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -135,9 +166,11 @@ function calcPref() {
                     }
                 }
 
-                if(document.getElementById(left)){
-                    if(document.getElementById(left).innerHTML==""){
-                        document.getElementById(left).innerHTML = contadorDeCercania;
+                if(visualizarPeso){
+                    if(document.getElementById(left)){
+                        if(document.getElementById(left).innerHTML==""){
+                            document.getElementById(left).innerHTML = contadorDeCercania;
+                        }
                     }
                 }
                 arrCuadrosAct2.push(left)
@@ -146,7 +179,14 @@ function calcPref() {
 
         // right
         var right = yAct + "-" + (xAct + 1);
-        if(arrRoads.includes(right) && document.getElementById(right).innerHTML==""){
+        var ojbRight;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == right){
+                ojbRight=map[z]
+            }
+        }
+
+        if(arrRoads.includes(right) && ojbRight.cell.prio==null){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -157,11 +197,14 @@ function calcPref() {
                     }
                 }
 
-                if(document.getElementById(right)){
-                    if(document.getElementById(right).innerHTML==""){
-                        document.getElementById(right).innerHTML = contadorDeCercania;
+                if(visualizarPeso){
+                    if(document.getElementById(right)){
+                        if(document.getElementById(right).innerHTML==""){
+                            document.getElementById(right).innerHTML = contadorDeCercania;
+                        }
                     }
                 }
+
                 arrCuadrosAct2.push(right)
             }
         }
