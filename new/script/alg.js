@@ -8,6 +8,9 @@ var yAct;
 
 var arrCuadrosAct = [];
 
+var check2 = 0;
+
+
 var contadorDeCercania = 0;
 
 function empezar() {
@@ -20,8 +23,39 @@ function preferenceCalc(){
     setPrefence();
 }
 
+function checkGoalStart() {
+
+    check2 = 0;
+
+    // check if there is a goal and a starting point
+    for(i=0; i!=map.length; i++){
+
+        switch (map[i].cell.type) {
+            case "actual":
+                check2++
+            break;
+
+            case "meta":
+                check2++
+            break;
+
+            default:
+            break;
+        };
+
+    };
+
+}
+
 // calculate cell preference
 async function setCells(){
+
+    checkGoalStart();
+    if(check2!=2){
+        console.error("Starting point and goal needed.");
+        return
+    }
+
     for(i=0; i!=map.length; i++){
         switch (map[i].cell.type) {
             case "wall":
@@ -48,7 +82,7 @@ async function setCells(){
     };
 
     // Espera un tiempo
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
 var intervalCalc
@@ -56,12 +90,16 @@ var arrCuadrosAct2
 
 async function setPrefence(){
 
+    if(check2!=2){
+        return
+    }
+
     await setCells(); // Espera a que la función 1 termine antes de continuar
 
     arrCuadrosAct2 = [];
 
     if(visualizarPeso){
-        document.getElementById(meta).innerHTML = "x";
+        document.getElementById(meta).innerHTML = " ";
     }
 
     intervalCalc = setInterval(() => {
@@ -69,7 +107,6 @@ async function setPrefence(){
     }, 50);
 
 }
-
 
 function calcPref() {
     var long = arrCuadrosAct.length
@@ -92,7 +129,7 @@ function calcPref() {
             }
         }
 
-        if(arrRoads.includes(top) && objTop.cell.prio==null){
+        if(arrRoads.includes(top) && objTop.cell.prio==undefined){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -124,7 +161,7 @@ function calcPref() {
             }
         }
 
-        if(arrRoads.includes(bot) && objBot.cell.prio==null){
+        if(arrRoads.includes(bot) && objBot.cell.prio==undefined){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -155,7 +192,7 @@ function calcPref() {
             }
         }
 
-        if(arrRoads.includes(left) && ojbLeft.cell.prio==null){
+        if(arrRoads.includes(left) && ojbLeft.cell.prio==undefined){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -186,7 +223,7 @@ function calcPref() {
             }
         }
 
-        if(arrRoads.includes(right) && ojbRight.cell.prio==null){
+        if(arrRoads.includes(right) && ojbRight.cell.prio==undefined){
             if (isNaN(yAct) || isNaN(xAct)) {
                 console.error("Not a number");
             } else {
@@ -215,12 +252,118 @@ function calcPref() {
 
     arrCuadrosAct=arrCuadrosAct2;
 
-    console.log(arrCuadrosAct)
+    // console.log(arrCuadrosAct)
 
     contadorDeCercania++;
 
     if(arrCuadrosAct.length==0){
         clearInterval(intervalCalc);
+        start();
     }
+
+}
+
+function start(){
+
+    arrCuadrosAct3 = [];
+    
+    for(i=0; i!=1; i++){
+
+        var numeros = actualCell.split("-");
+        var yAct = parseInt(numeros[0]);
+        var xAct = parseInt(numeros[1]);
+
+        // top
+        var top = (yAct - 1) + "-" + xAct;
+        var objTop;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == top){
+                objTop=map[z];
+                arrCuadrosAct3.push(objTop.cell.id);
+            }
+        }
+
+        // bot
+        var bot = (yAct + 1) + "-" + xAct;
+        var objBot;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == bot){
+                objBot=map[z];
+                arrCuadrosAct3.push(objBot.cell.id);
+            }
+        }
+
+        // left
+        var left = yAct + "-" + (xAct - 1);
+        var ojbLeft;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == left){
+                ojbLeft=map[z];
+                arrCuadrosAct3.push(ojbLeft.cell.id);
+            }
+        }
+
+        // right
+        var right = yAct + "-" + (xAct + 1);
+        var ojbRight;
+        for(z=0; z!=map.length; z++){
+            if(map[z].cell.id == right){
+                ojbRight=map[z];
+                arrCuadrosAct3.push(ojbRight.cell.id);
+            }
+        }
+
+        // console.log(`
+        // Act: ${actualCell}
+        // Top: ${top}
+        // Bot: ${bot}
+        // Left: ${left}
+        // Right: ${right}
+        // `)
+
+    }
+
+    // useless
+    var
+
+    objetosAct = [];
+
+    
+    if(objBot && objBot.cell.prio!=undefined)objetosAct.push(objBot.cell.prio);
+    if(objTop && objTop.cell.prio!=undefined)objetosAct.push(objTop.cell.prio);
+    if(ojbLeft && ojbLeft.cell.prio!=undefined)objetosAct.push(ojbLeft.cell.prio);
+    if(ojbRight && ojbRight.cell.prio!=undefined)objetosAct.push(ojbRight.cell.prio);
+
+    // console.log("Prio "+objTop.cell.prio, objBot.cell.prio, ojbLeft.cell.prio, ojbRight.cell.prio)
+    // console.log(objetosAct)
+
+    const min = Math.min(...objetosAct)
+    
+    // console.log(min);
+
+    for(i=0; i!=map.length; i++){
+        if(map[i].cell.type == "actual"){
+            map[i].cell.type = "actual2"
+            document.getElementById(map[i].cell.id).classList.remove("actual");
+            document.getElementById(map[i].cell.id).classList.add("actual2");
+        }
+    }
+
+    var bandCheck3=false;
+
+    for(i=0; i!=map.length; i++){
+        if(bandCheck3==false && map[i].cell.prio == min && arrCuadrosAct3.includes(map[i].cell.id)){
+            map[i].cell.type = "actual"
+            document.getElementById(map[i].cell.id).classList.add("actual");
+            actualCell=map[i].cell.id;
+            bandCheck3=true;
+        }
+    }
+
+    if(min==0) return
+
+    setTimeout(() => {
+        start()
+    }, 100);
 
 }

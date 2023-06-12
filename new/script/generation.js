@@ -11,7 +11,7 @@ var visualizarPeso=true;
 
 function laberintoDefaul() { 
     // create cells in the format of: "x-y
-    for(i=0; i!=sizeY-1; i++){
+    for(i=0; i!=sizeY; i++){
         for(j=0; j!=sizeX; j++){
             var cell = i+"-"+j;
             if(bandColor){
@@ -21,7 +21,7 @@ function laberintoDefaul() {
                         id: cell,
                         x: j,
                         y: i,
-                        prio: null,
+                        prio: undefined,
                         color: 1,
                         type: "road"
                     }
@@ -33,7 +33,7 @@ function laberintoDefaul() {
                         id: cell,
                         x: j,
                         y: i,
-                        prio: null,
+                        prio: undefined,
                         color: 2,
                         type: "road"
                     }
