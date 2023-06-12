@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,17 +13,28 @@
     <link rel="stylesheet" href="CSS/estilo.css">
 
 </head>
+
 <body onload="laberintoDefaul()">
-    <div id="botones">
-        <input type="button" value="empezar" onclick="empezar()">
-        <input type="button" id="botonPared" value="crear pared" onclick="clickMode(1)">
-        <input type="button" id="botonPared2" value="borrar" onclick="clickMode(2)">
-        <input type="button" id="botonMeta" value="seleccionar meta" onclick="clickMode(4)">
-        <input type="button" id="botonInicio" value="seleccionar inicio" onclick="clickMode(3)">
-        <input type="button" id="botonPeso" value="Ver peso" style="background-color: green; color: aliceblue;" onclick="verPeso()">
+
+    <div id="block" hidden><h3>Your viewport is too small, try on a bigger screen.</h3><br><h3>Su pantalla es demasiado pequeña, intente con otra mayor.</h3></div>
+
+    <h3>Maze solving with A*</h3>
+    <div class="botones">
+        <input type="button" id="botonInicio" value="Starting point" onclick="clickMode(3)">
+        <input type="button" id="botonPared" value="Wall" onclick="clickMode(1)">
+        <input type="button" id="botonPared2" value="Remove" onclick="clickMode(2)">
+        <input type="button" id="botonMeta" value="Goal" onclick="clickMode(4)">
+    </div>
+    <div class="botones">
+        <input type="button" value="Run" onclick="empezar()">
+        <input type="button" id="botonPeso" value="Weight display" style="background-color: red; color: aliceblue;" onclick="verPeso()">
+        <input type="button" id="botonReset" value="Reset" onclick="reset()">
     </div>
     <br>
-    <div id="lienzo"></div>
-</body>
-</html>
+    <div id="contenedor">
+        <div id="lienzo"></div>
+    </div>
 
+</body>
+
+</html>

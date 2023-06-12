@@ -14,6 +14,8 @@ var check2 = 0;
 var contadorDeCercania = 0;
 
 function empezar() {
+    removeClass();
+    disableB();
     clickModeV = null;
     preferenceCalc();
 }
