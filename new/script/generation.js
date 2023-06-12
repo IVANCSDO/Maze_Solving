@@ -17,6 +17,8 @@ function laberintoDefaul() {
                     cell:{
                         status: "blank",
                         id: cell,
+                        x: j,
+                        y: i,
                         prio: null,
                         color: 1,
                         type: "road"
@@ -27,6 +29,8 @@ function laberintoDefaul() {
                     cell:{
                         status: "blank",
                         id: cell,
+                        x: j,
+                        y: i,
                         prio: null,
                         color: 2,
                         type: "road"
@@ -39,7 +43,7 @@ function laberintoDefaul() {
         }
     }
     var lienz = document.getElementById("lienzo");
-    console.log(map)
+    // console.log(map)
     lienz.style.width = sizeX*5+"0px";
 
     newEvent()
@@ -134,27 +138,14 @@ function changeClass() {
 
         default:
         break;
-    }
+    };
 
 }
 
 function updateData(value, id) {
     for(i=0; i!=map.length; i++){
         if(map[i].cell.id == id){
-            map[i].cell.type = value
-        }
-    }
-}
-
-
-function empezar() { 
-
-    calcularA()
-    
-}
-
-function calcularA(){
-
-
-
+            map[i].cell.type = value;
+        };
+    };
 }
