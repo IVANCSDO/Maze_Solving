@@ -26,6 +26,10 @@ This is how the code works:
 
 In summary, the code performs a preference calculation on a map and finds the optimal path from a starting point to a target using priorities assigned to the cells. It is like an A* type algorithm but in which the distance between nodes is always the same, since the distance between squares does not vary.
 
+
+-------------------------------------------------------------------------------------
+
+
 ESP:
 
 Así es como funciona el código:
