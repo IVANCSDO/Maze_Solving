@@ -1,0 +1,28 @@
+html{
+    background-color: rgb(20, 20, 20);
+    margin: 0%;
+    font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+}
+
+div{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+a{
+    text-align: center;
+    color: aliceblue;
+    font-size: 300%;
+    transition: 0.35s;
+}
+
+a:hover{
+    color: rgb(172, 198, 221);
+}
